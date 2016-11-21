@@ -1,0 +1,20 @@
+Reflection 1: some refreshmen of git bash commands
+  * touch: create new file
+  * ..: parent dir
+  * -: previous dir
+  * ls -a: show all files including hidden ones
+
+Reflection 2: Initialize a Repository
+  * Use -git init to initialize a repository in that dir. It creates a .git hidden file in that dir with no initial commits.
+  * -git status can be used to check status. If there are other unsorted files within that dir where .git is, they will show up as "untracked files".
+  * Use -git clone [url] to download a project from online.
+
+Reflection 3: Staging Area
+  * Staging area is a the intermediary directory between the working directory (where actual files are) and the repository directory (.git) to help transfer files from the former to the latter. It exists to have to control for the commit from WD to repository: for example, by allowing you to add select files on to SA and commit all at once.
+  * Use -git add <filename.type> to add files from WD to SA.
+  * Use -git reset <filename.type>/[commit] to undo; or use -git rm --cached <filename.type> to unstage it from SA.
+  * Files in SA will be shown as "Changes to be committed:..." if you run -git status.
+
+Reflection 4: Commit
+  * Use -git commit to commit. Git Bash will be aborted due to empty commit msg, and text editor will be prompt. Add the commit msg (note: write it like the command, ie use current tense only, no "adds","added"etc.), then close the editor entirely. The command will automatically commit.
+  * Alternatively, use -git commit -m "message content".
