@@ -1,0 +1,25 @@
+Reflection 1: -diff command
+It is a fast way to quickly find differences of two versions. Keep in mind to use short lines as the -diff command will not pin point the difference within a line.
+-git config --global color.ui auto #red and green coloring for changes
+
+Reflection 2: version control history
+Many software, including google doc, drop box, and etc. use version control to allow users to track history and all changes.
+
+Reflection 3: git commit size
+Manual savings like git commit allows users to save based on logical changes, which is better than auto savings which could be too large or too small.
+
+Reflection 4: multi-file commits and repository
+Git saves multiple files in one commit using a repository. This is because multiple files are often linked together, so changing one often links to other files.
+
+Reflection 5: using git to view history
+When comparing two versions of commits, first locate the repository where the commits are. Use git log to view the commit history and get commit IDs, then use -git diff first_id second_id to compare. Note that later commits come in first.
+
+Reflection 6: detach head and confidence in version control
+-git checkout allows users to revert to a previous commit without losing the current one. Each commit is like a "head", and this command allows users to detach the current head and attach to previous ones. This way users can find what went wrong and experiment with the command line.
+
+Reflection 7: set up work space
+* set up home directory(linux): under /d/"Program Files"/Git/etc, there is a file names "profile". Add a line that says HOME=/d/...(the home directory you want to settle). Then open git bash, run -cd ~ then it should go to that dir.
+* set up home directory(win): right click "my computer"->properties->advanced settings->environment variable, then add a "HOME" variable with the value of the directory.
+* rename or move command: -mv
+* set up default global editor: git config --global core.editor " '[path where the program.exe is]' -u -w", where -u lets bash know that it won't close until the editor is closed, and -w lets editor opens up a new window when launched.
+* set up default coloring etc: all are configured under .bash-profile, which needs to be located within the home dir. A "." in front means a hidden file. All the style and etc references are located in git-completion.bash and git-prompt.sh, which also need to be in home dir.
