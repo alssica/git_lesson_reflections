@@ -1,8 +1,42 @@
 Reflection 1: Remote repository
-  * Remote is similar to local branches except they are stored on cloud. You can create a repository on githubt, then copy the URL
+  * Remotes are similar to local repositories except they are stored on cloud. You can create a repository on githubt with a URL.
+  * Any changes made on local dir need to add and commit, before you can push them to the remote.
   * On the local dir (that may or may not has a local .git), run:
-      -git remote add [branch name (first one should be origin by convention)] [URL] 
-        #creates remote branch in that remote repository linked via URL
-      -git push origin master 
-        #push the local master branch to origin (remote branch)
-      -git remote to show all remote branches (-v to show both push and pull url).
+      -git remote add [remote name (first one should be origin by convention)] [URL] 
+       #creates remote repository 
+      -git push [remote name] [branch name] 
+       #push the local branch to a remote
+      -git pull [remote name] [branch name]
+       #pull edits on remote to local branch
+      -git remote 
+       #show all remote branches (-v to show both push and pull url).
+
+Reflection 2: Branch, Clone and Fork
+  * Branch: within a repository
+  * Clone: operates on repositories
+  * Fork: refers only to github/remote repositories
+  * Note: -vim [name] creates editable file, -touch or -echo [name] to create .txt file
+  
+Reflection 3: Local copies of remotes
+  * When running -git clone, git clones the remote (origin)'s branch (master) on local dir (also called master), but also sets up the last known position of that remote (origin/master). When you update files on your local branch (master) and someone else update on remote one, you want to first fetch the other one onto the origin/master, compare with yours, merge, then push back to remote.
+  * When make local commit: only local master get updated;
+    When -git push [remote] [branch]: both origin/master and remote master will be updated;
+    When -git pull [remote] [branch]: both origin/master and local master will be updated;
+    When -git fetch [remote]: will only update origin/master, and leave local master alone. 
+  * -git pull origin master = -git fetch [remote] + git merge master origin/master 
+    Merge may result in conflict. Edit the file. 
+    Then -git add and commit.
+    Lastly, -git push origin master.
+  * Alternatively if you don't use pull but do the steps seperately, you can use -git log origin/master, or -git diff origin/master master to compare your local branch with the one you fetched from online.
+  * Fast-forward merge: when merging b into a, normally it will create a new commit to combine both a and b. However, if a is b's direct ancestory (meaning a is reachable through b and thus b has all of a's data), then there won't be a new commit.
+  
+Reflection 4: Pull request
+  * Pull request is a request to merge a change you made into the main remote branch after others' review. 
+  * To do that, first create a local branch (other than master) (-git checkout -b [new branch name]), then edit files, add, commit and putsh to your fork.
+  * Then on github, select make a pull request, but make sure to change the base directory from the original to your forked copy.
+  * Others will be notified via email of your request. They can review and comment on your commit. When approved, either you or they can hit "merge pull request" to merge this branch into the main master branch. 
+  
+Reflection 5: Pull request conflict
+  * This happens when others are editing the same thing that you try to merge into the remote master via a pull request. To resolve this, first fetch the other's change down to your local directory origin/master, compare it with yours, then merge it into that branch that you try to pull request (which will result in conflict locally, so you resolve it, commit and then merge).
+  * Afterwards, push the new commit to remote. The merge pull request button should be green and you're free to merge this branch into the remote master.
+  * Many people also clones the original (not the forked version in your account) as a remote called "upstream", and keep the remote "origin" as the clone copied from the fork in your account. This is done by run -git remote add upstream [url], then -git pull upstream master. Then repeat the above steps.
