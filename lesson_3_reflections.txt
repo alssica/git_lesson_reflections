@@ -1,0 +1,8 @@
+Reflection 1: Remote repository
+  * Remote is similar to local branches except they are stored on cloud. You can create a repository on githubt, then copy the URL
+  * On the local dir (that may or may not has a local .git), run:
+      -git remote add [branch name (first one should be origin by convention)] [URL] 
+        #creates remote branch in that remote repository linked via URL
+      -git push origin master 
+        #push the local master branch to origin (remote branch)
+      -git remote to show all remote branches (-v to show both push and pull url).
