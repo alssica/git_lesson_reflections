@@ -18,3 +18,42 @@ Reflection 3: Staging Area
 Reflection 4: Commit
   * Use -git commit to commit. Git Bash will be aborted due to empty commit msg, and text editor will be prompt. Add the commit msg (note: write it like the command, ie use current tense only, no "adds","added"etc.), then close the editor entirely. The command will automatically commit.
   * Alternatively, use -git commit -m "message content".
+
+Reflection 5: Git diff to compare WD and SA
+  * -git diff commit1 commit 2 compares two commits;
+  * -git diff compares content in WD and SA
+  * -git diff --staged compares content added to SA and the most recent commit in the repository
+  * -git reset --hard to permanently undo any unwanted changes.
+  * Work flow:
+    1. Use -git diff to see what's been changed; if these are the changes you want, use -git add to add the files to staging area;
+    2. Use -git diff --staged to compare it with the most recent commit, to make sure these are the changes you want to commit (no redundant stuff);
+    3. Commit changes;
+    4. Use -git diff to compare what's left in SA to WD. If the leftovers are unwanted, use -git reset --hard to undo changes. (Note: this command permanently loses changes)
+
+Reflection 6: Branches
+  * Branches creates different variations of the project.
+  * -git branch to check what branches are currently in the repository;
+  * -git branch [name] to crate a new branch (which clones all files contains in the current branch);
+  * -git checkout [branch name] to checkout branch.
+
+Reflection 7: Remote reachabilities
+  * Each branch is linear, so if there is a "tree" happened in the branch (ie a commit is made to one of the commit that was checked out in this branch), it will not be reachable unless you know its id. The best practice is to create a new branch for this commit
+  * To do this, do a short cut sequence of  -git checkout -b [new branch name], which is equal to -git branch [new branch], -git checkout [new branch].
+  * tip: a better way to visualize the commit history and branches is  -git log --graph --oneline [branch name1] [branchname 2].
+  * To clean the unreachable commits, use -git gc.
+
+Reflection 8: Merge
+  * -git merge [branch1] [branch2]: merge branch 2 into 1;
+  * Alternatively, check out branch1 (the mother branch), then do -git merge [branch2].
+  * The branch structure is still maintained after the merge. Use -git branch -d [branch2] to delete the empty branch label. Use -git show [commid_id] to show diff btw the commit and its actual parent.
+  * To restore a merge: -git merge --abort
+  * Tip: make sure that you don't checkout a 3rd branch when you're trying to merge 1 and 2 - the 1 & 2 will be merged into 3 and may cause unwanted changes.
+
+Reflection 9: Merge conflicts
+  * Note: linux based and windows based machines add different hidden characters at the end when press enter. Use -git config --global core.autocrlf true to convert windows to linux based convention before any action.
+  * When both branches have edited a file, it creates a conflict in merge, and git will prompt a conflict msg containing the file in question. Open the file, the conflict part is broken down into:
+    - "<<<<Head": version of the current checked out head
+    - "||||merged common ancestors": original version that both branches modified
+    - ">>>>master": code that's in the branch "master" (the merging branch) right now
+  * After modifying the conflict file, add it to SA, then use -git commit to conclude merging.
+  * -git log -n 1: will only show 1 log.
